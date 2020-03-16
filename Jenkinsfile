@@ -5,7 +5,7 @@ pipeline {
       steps {
         
         sh '''
-            def result = ./mvnw package
+            result = ./mvnw package
             echo "The resutlt is"
             echo "$result"
           '''
