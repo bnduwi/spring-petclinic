@@ -35,6 +35,15 @@ pipeline {
         sh ' ./mvnw package'
       }
     }
+    
+ stage('Done!') {
+      when {
+          branch 'master'
+      }      
+      steps {        
+        echo 'Seems like it is done, just need to send notification'
+      }
+    }
   
   }
 }
