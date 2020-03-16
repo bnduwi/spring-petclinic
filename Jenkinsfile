@@ -4,8 +4,10 @@ pipeline {
     stage('Build') {
       steps {
         def result = sh './mvnw package'
-        echo 'The resutlt is'
-        echo result
+        sh '''
+            echo "The resutlt is"
+            echo "$result"
+          '''
       }
     }
   }
