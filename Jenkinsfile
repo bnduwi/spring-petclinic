@@ -35,6 +35,12 @@ pipeline {
         sh ' ./mvnw package'
       }
     }
+    
+ stage('Done!') {
+      steps {        
+        slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-notifications', color: 'good', message: 'Build Successful on ${BUILD_URL}', tokenCredentialId: 'slack-demo-message'
+      }
+    }
   
   }
 }
