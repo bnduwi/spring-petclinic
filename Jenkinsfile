@@ -3,8 +3,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mkdir tmp'
+        sh 'ls'
         sh './mvnw package'
+        sh 'ls'
       }
     }
   }
