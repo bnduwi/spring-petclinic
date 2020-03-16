@@ -41,7 +41,7 @@ pipeline {
           branch 'master'
       }      
       steps {        
-        echo 'Seems like it is done, just need to send notification'
+        slackSend channel: 'jenkins-notifications', color: 'good', message: 'Build Successful - ${BUILD_URL}', tokenCredentialId: 'slack-demo-message'
       }
     }
   
