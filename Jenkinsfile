@@ -37,9 +37,6 @@ pipeline {
     }
     
  stage('Done!') {
-      when {
-          branch 'master'
-      }      
       steps {        
         slackSend channel: 'jenkins-notifications', color: 'good', message: 'Build Successful - ${BUILD_URL}', tokenCredentialId: 'slack-demo-message'
       }
