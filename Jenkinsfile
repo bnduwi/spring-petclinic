@@ -38,7 +38,7 @@ pipeline {
     
  stage('Done!') {
       steps {        
-        slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'Build Successful!', color: 'good', message: 'Build Successful on ${BUILD_URL}', tokenCredentialId: 'slack-demo-message'
+        slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-notifications', color: 'good', message: 'Build Successful on ${BUILD_URL}', tokenCredentialId: 'slack-demo-message'
       }
     }
   
