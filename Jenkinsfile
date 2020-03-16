@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
+    stage('Build') {
       when {
         branch 'master'
       }      
@@ -24,6 +24,17 @@ pipeline {
       steps {        
         sh ' ./mvnw package'
       }
-    }  
+    }
+    stage('Deploy') {
+      when {
+       not {
+          branch 'master' 
+        }
+      }      
+      steps {        
+        sh ' ./mvnw package'
+      }
+    }
+  
   }
 }
