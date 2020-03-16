@@ -1,12 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Compile') {
+    stage('build') {
       when {
         branch 'master'
       }      
       steps {        
-        sh ' ./mvnw compile'
+        sh ' ./mvnw clean'
       }
     }
     stage('Test') {
