@@ -6,7 +6,7 @@ pipeline {
         branch 'master'
       }      
       steps {        
-        sh ' ./mvnw clean'
+        sh ' ./mvnw cleanbb'
       }
     }
     stage('Test') {
@@ -14,7 +14,7 @@ pipeline {
         branch 'master'
       }      
       steps {        
-        sh ' ./mvnw test'
+        sh ' ./mvnw testbb'
       }
     }
     stage('Package') {
@@ -50,6 +50,11 @@ pipeline {
         slackSend channel: '#jenkinsnotify',
                   color: 'good',
                   message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+    }
+    failure {
+        slackSend channel: '#jenkinsnotify',
+                  color: 'good',
+                  message: "The pipeline ${currentBuild.fullDisplayName} Failed. Details: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
     }
   }  
 }
