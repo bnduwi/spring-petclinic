@@ -57,8 +57,9 @@ pipeline {
       }
    
       steps {
-        myvar = sh 'git rev-list --count HEAD'
-        sh 'echo Commit Count: $myvar'
+        def username = 'Jenkins'
+        echo 'Hello Mr. ${username}'
+        echo "I said, Hello Mr. ${username}"
       }
     }  
   }
