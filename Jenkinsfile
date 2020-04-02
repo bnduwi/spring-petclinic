@@ -51,7 +51,10 @@ pipeline {
     
  stage('Done!') {
    environment { 
-                MyTestVar = 'JenkinsTest'
+                MyTestVar = """${sh(
+                               returnStdout: true,
+                               script: 'git rev-list --count HEAD'
+                            )}"""
             }
       when {
        not { 
@@ -61,7 +64,6 @@ pipeline {
    
       steps {
         sh 'echo Hello Mr. $MyTestVar'
-        sh 'echo Hello Mr. $(env.MyTestVar}'
         
       }
     }  
