@@ -39,6 +39,8 @@ pipeline {
  stage('Done!') {
       steps {        
         // slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-notifications', color: 'good', message: 'Build Successful on${env.JOB_NAME} ${env.BUILD_NUMBER}', tokenCredentialId: 'slack-demo-message'
+        sh 'echo done!'
+        sh 'git rev-list --count HEAD'
       }
     }
   
