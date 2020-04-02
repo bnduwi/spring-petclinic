@@ -56,13 +56,12 @@ pipeline {
       when {
        not { 
          branch 'master' 
-       }
-        environment name: 'MyTestVar', value: 'JenkinsTest'
+       }       
       }
    
       steps {
-        def sh = 'echo Hello Mr. $MyTestVar'
-        def sh ='echo Hello Mr. $(env.MyTestVar}'
+        sh = 'echo Hello Mr. $MyTestVar'
+        sh ='echo Hello Mr. $(env.MyTestVar}'
         
       }
     }  
