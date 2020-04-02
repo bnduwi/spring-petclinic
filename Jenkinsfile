@@ -61,8 +61,8 @@ pipeline {
       }
    
       steps {
-        sh 'echo Hello Mr. $MyTestVar'
-        sh 'echo Hello Mr. $(env.MyTestVar}'
+        def sh = 'echo Hello Mr. $MyTestVar'
+        def sh ='echo Hello Mr. $(env.MyTestVar}'
         
       }
     }  
@@ -76,7 +76,7 @@ pipeline {
     }
     failure {
         slackSend channel: '#jenkinsnotify',
-                  color: 'bad',
+                  color: 'warning',
                   message: "The pipeline ${currentBuild.fullDisplayName} Failed. Details: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
     }
   }  
