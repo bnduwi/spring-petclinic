@@ -9,8 +9,7 @@ pipeline {
       }
       
       steps {
-        sh 'echo Build Phase'
-        sh ' ./mvnw cleanbb'
+        sh ' ./mvnw clean'
       }
     }
     
@@ -22,7 +21,7 @@ pipeline {
       }
       
       steps {        
-        sh ' ./mvnw testbb'
+        sh ' ./mvnw test'
       }
     }
     
@@ -58,8 +57,13 @@ pipeline {
       }
    
       steps {
+        sh """
+            #!/bin/bash
+            myvar=git rev-list --count HEAD
+            echo "The value is \$myvar"
+        """
         sh 'echo Pulling Git branch count!'
-        sh 'git rev-list --count HEAD'
+        //sh 'git rev-list --count HEAD'
       }
     }  
   }
