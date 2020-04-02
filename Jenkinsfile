@@ -3,42 +3,61 @@ pipeline {
   stages {
     stage('Build') {
       when {
-        branch 'master'
-      }      
-      steps {        
-        sh ' ./mvnw clean'
+       not {
+          branch 'master' 
+        }
+      }
+      
+      steps {
+        sh 'echo Build Phase'
+        sh ' ./mvnw cleanbb'
       }
     }
+    
     stage('Test') {
       when {
-        branch 'master'
-      }      
+       not {
+          branch 'master' 
+        }
+      }
+      
       steps {        
-        sh ' ./mvnw test'
+        sh ' ./mvnw testbb'
       }
     }
+    
     stage('Package') {
       when {
-        branch 'master' 
-      }      
+       not {
+          branch 'master' 
+        }
+      }
+      
       steps {        
         sh ' ./mvnw package'
       }
     }
+    
     stage('Deploy') {
       when {
        not {
           branch 'master' 
         }
-      }      
+      }
+      
       steps {        
         sh ' ./mvnw package'
       }
     }
     
  stage('Done!') {
-      steps {        
-        
+      when {
+       not {
+          branch 'master' 
+        }
+      }
+   
+      steps {
         sh 'echo Pulling Git branch count!'
         sh 'git rev-list --count HEAD'
       }
@@ -50,6 +69,11 @@ pipeline {
         slackSend channel: '#jenkinsnotify',
                   color: 'good',
                   message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+    }
+    failure {
+        slackSend channel: '#jenkinsnotify',
+                  color: 'good',
+                  message: "The pipeline ${currentBuild.fullDisplayName} Failed. Details: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
     }
   }  
 }
