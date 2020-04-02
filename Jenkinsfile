@@ -54,19 +54,16 @@ pipeline {
                 MyTestVar = 'JenkinsTest'
             }
       when {
-       not {
-          branch 'master' 
-        }
+       not { 
+         branch 'master' 
+       }
+        environment name: 'MyTestVar', value: 'JenkinsTest'
       }
    
       steps {
         sh 'echo Hello Mr. $MyTestVar'
         sh 'echo Hello Mr. $(env.MyTestVar}'
-        if (env.BRANCH_NAME == 'master') {
-            echo 'I only execute on the master branch'
-        } else {
-            echo 'I execute elsewhere'
-        }
+        
       }
     }  
   }
