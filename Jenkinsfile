@@ -57,13 +57,8 @@ pipeline {
       }
    
       steps {
-        sh """
-            #!/bin/bash
-            myvar=git rev-list --count HEAD
-            echo "The value is \$myvar"
-        """
-        sh 'echo Pulling Git branch count!'
-        //sh 'git rev-list --count HEAD'
+        myvar = sh 'git rev-list --count HEAD'
+        sh 'echo Commit Count: $myvar'
       }
     }  
   }
