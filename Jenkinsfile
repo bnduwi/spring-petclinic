@@ -71,7 +71,7 @@ pipeline {
     }
     failure {
         slackSend channel: '#jenkinsnotify',
-                  color: 'good',
+                  color: 'bad',
                   message: "The pipeline ${currentBuild.fullDisplayName} Failed. Details: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
     }
   }  
