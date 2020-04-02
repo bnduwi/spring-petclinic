@@ -50,6 +50,9 @@ pipeline {
     }
     
  stage('Done!') {
+   environment { 
+                MyTestVar = 'JenkinsTest'
+            }
       when {
        not {
           branch 'master' 
@@ -57,9 +60,7 @@ pipeline {
       }
    
       steps {
-        def username = 'Jenkins'
-        echo 'Hello Mr. ${username}'
-        echo "I said, Hello Mr. ${username}"
+        echo 'Hello Mr. $MyTestVar'
       }
     }  
   }
