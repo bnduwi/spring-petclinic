@@ -8,7 +8,8 @@ pipeline {
         }
       }
       
-      steps {        
+      steps {
+        sh 'echo Build Phase'
         sh ' ./mvnw cleanbb'
       }
     }
