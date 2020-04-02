@@ -60,8 +60,8 @@ pipeline {
       }
    
       steps {
-        sh = 'echo Hello Mr. $MyTestVar'
-        sh ='echo Hello Mr. $(env.MyTestVar}'
+        sh 'echo Hello Mr. $MyTestVar'
+        sh 'echo Hello Mr. $(env.MyTestVar}'
         
       }
     }  
