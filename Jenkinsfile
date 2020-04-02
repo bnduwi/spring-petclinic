@@ -42,7 +42,14 @@ pipeline {
         sh 'echo Pulling Git branch count!'
         sh 'git rev-list --count HEAD'
       }
-    }
-  
+    }  
   }
+  
+  post {
+    success {
+        slackSend channel: '#ops-room',
+                  color: 'good',
+                  message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+    }
+  }  
 }
