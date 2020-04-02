@@ -47,7 +47,7 @@ pipeline {
   
   post {
     success {
-        slackSend channel: '#ops-room',
+        slackSend channel: '#jenkinsnotify',
                   color: 'good',
                   message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
     }
