@@ -13,11 +13,10 @@ pipeline {
       steps {
         sh ' echo The Hash is: $CurrentCommitHash'                
         sh """
-            if [[ $BuildHashHistory = "none" ]]
-            then
-              echo There is NOT A previous hash stored
-            else
+          if [ $BuildHashHistory != "none" ]; then
               echo There is A previous hash stored
+            else
+              echo There is NOT A previous hash stored
             fi
         """
       }
