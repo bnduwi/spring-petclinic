@@ -9,7 +9,10 @@ pipeline {
                             )}"""
                 BuildHashStoreFile = 'buildHashStore.txt'
                 BuildHashHistory = 'none'
-                CommitCount = readFile file: 'commitCount.txt'
+                CommitCount = """${sh(
+                               returnStdout: true,
+                               script: readFile file: 'commitCount.txt'
+                            )}"""
             }
       steps {
         sh ' echo The Hash is: $CurrentCommitHash'   
