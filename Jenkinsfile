@@ -15,7 +15,7 @@ pipeline {
         sh 'echo The Commit Count before increment: $CommitCount'
         
         script {
-                    env.FILENAME = readFile 'output.txt'
+                    env.FILENAME = readFile 'commitCount.txt'
                 }
                 echo "${env.FILENAME}"
         
