@@ -14,7 +14,7 @@ pipeline {
             }
       steps {
         sh ' echo The Hash is: $CurrentCommitHash'   
-        sh 'echo The Commit Count before increment: $CommitCount'
+        //sh 'echo The Commit Count before increment: $CommitCount'
         
         writeFile file: 'buildHashStore.txt', text: $CurrentCommitHash
         //writeFile file: 'commitCount.txt', text: '0'       
