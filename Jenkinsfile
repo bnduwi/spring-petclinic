@@ -1,3 +1,5 @@
+def port = 1000
+
 pipeline {
   agent any
   stages {
@@ -14,12 +16,12 @@ pipeline {
         sh ' echo The Hash is: $CurrentCommitHash'   
         sh 'echo The Commit Count before increment: $CommitCount'
         
-        writeFile file: 'buildHashStore.txt', text: '$CurrentCommitHash'
-        writeFile file: 'commitCount.txt', text: '0'       
+        writeFile file: 'buildHashStore.txt', text: $CurrentCommitHash
+        //writeFile file: 'commitCount.txt', text: '0'       
         
         script {
-                    env.FILENAME = readFile 'commitCount.txt'
-                }
+          env.FILENAME = readFile 'commitCount.txt'
+        }
         echo "${env.FILENAME}"       
         
         
