@@ -16,8 +16,13 @@ pipeline {
       steps {
         sh ' echo The Hash is: $CurrentCommitHash'   
         sh 'echo The Commit Count before increment: $CommitCount'
-        sh '$CommitCount=$((CommitCount+1))'
-        sh 'echo The Commit Count after increment: $CommitCount'
+        
+        writeFile file: 'buildHashStore.txt', text: 'Working with files the Groovy way is easy.'
+        sh 'ls -l buildHashStore.txt'
+        sh 'cat buildHashStore.txt'
+        
+        sh 'echo The workspace is ${env.WORKSPACE}'
+        
         sh """
           if [ $BuildHashHistory != "none" ]; then
               echo There is A previous hash stored
