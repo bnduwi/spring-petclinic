@@ -3,8 +3,20 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh ' echo GIT_COMMIT %GIT_COMMIT%'
-        sh '[ -s /tmp/myfile.txt ] && echo "File not empty" || echo "File empty"'
+        sh ' git rev-parse HEAD'
+        sh """
+            if [ -f buildHashStore.txt ]
+            then
+                if [ -s buildHashStore.txt ]
+                then
+                    echo "File exists and not empty"
+                else
+                    echo "File exists but empty"
+                fi
+            else
+              echo "File not exists"
+            fi
+        """
       }
     }
   }
