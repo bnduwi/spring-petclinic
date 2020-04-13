@@ -8,7 +8,7 @@ pipeline {
                                script: 'git rev-parse HEAD'
                             )}"""
                 BuildHashStoreFile = 'buildHashStore.txt'
-                BuilHashHistory = ""
+                BuilHashHistory = ''
             }
       steps {
         sh ' echo The Hash is: $CurrentCommitHash'
@@ -29,7 +29,7 @@ pipeline {
         """
         
         sh """
-            if [ -z "$BuilHashHistory" ]
+            if [ -z $BuilHashHistory ]
             then
                 echo "\$BuilHashHistory is empty"
             else
