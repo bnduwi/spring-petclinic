@@ -15,7 +15,7 @@ pipeline {
         //sh 'echo The Commit Count before increment: $CommitCount'
         
         writeFile file: 'buildHashStore.txt', text: "${env.CurrentCommitHash}"
-        //writeFile file: 'commitCount.txt', text: '0'       
+        writeFile file: 'commitCount.txt', text: '0'       
         
         script {
           env.FILENAME = readFile 'commitCount.txt'
