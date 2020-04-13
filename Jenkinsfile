@@ -1,5 +1,3 @@
-def port = 1000
-
 pipeline {
   agent any
   stages {
