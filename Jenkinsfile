@@ -8,15 +8,17 @@ pipeline {
                                script: 'git rev-parse HEAD'
                             )}"""
                 BuildHashStoreFile = 'buildHashStore.txt'
-                BuildHashHistory = 'none'
-                CommitCount = """${sh(
-                               returnStdout: true,
-                               script: readFile file: 'commitCount.txt'
-                            )}"""
+                BuildHashHistory = 'none'                
             }
       steps {
         sh ' echo The Hash is: $CurrentCommitHash'   
         sh 'echo The Commit Count before increment: $CommitCount'
+        
+        script {
+                    env.FILENAME = readFile 'output.txt'
+                }
+                echo "${env.FILENAME}"
+        
         
         writeFile file: 'buildHashStore.txt', text: '$CurrentCommitHash'
         
