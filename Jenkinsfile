@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment{
-   CommitCount = 0 
-  }
   stages {
     stage('Build') {
       environment { 
@@ -12,16 +9,14 @@ pipeline {
                             )}"""
                 BuildHashStoreFile = 'buildHashStore.txt'
                 BuildHashHistory = 'none'
+                CommitCount = readFile file: 'commitCount.txtt'
             }
       steps {
         sh ' echo The Hash is: $CurrentCommitHash'   
         sh 'echo The Commit Count before increment: $CommitCount'
         
-        writeFile file: 'buildHashStore.txt', text: 'Working with files the Groovy way is easy.'
-        sh 'ls -l buildHashStore.txt'
-        sh 'cat buildHashStore.txt'
+        writeFile file: 'buildHashStore.txt', text: '$CurrentCommitHash'
         
-        sh 'echo The workspace is ${env.WORKSPACE}'
         
         sh """
           if [ $BuildHashHistory != "none" ]; then
