@@ -32,7 +32,7 @@ class PetclinicIntegrationTests {
 	@Test
 	void testFindAll() throws Exception {
 		String string1 = "a";
-		String string2 = "a";
+		String string2 = "b";
 		assertEquals(string1, string2);
 
 		vets.findAll();
