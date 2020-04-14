@@ -32,5 +32,14 @@ class PetclinicIntegrationTests {
 		vets.findAll();
 		vets.findAll(); // served from cache
 	}
+    
+    @Test
+	void testBadNotEqual() throws Exception {
+		String string1="a";					
+        String string2="b";
+        
+        //Assert statements		
+        assertEquals(string1,string2);	
+	}
 
 }
