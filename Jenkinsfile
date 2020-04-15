@@ -6,8 +6,7 @@ pipeline {
        not {
           branch 'master' 
         }
-      }
-      
+      }      
       steps {
         sh ' ./mvnw clean'
       }
@@ -18,8 +17,7 @@ pipeline {
        not {
           branch 'master' 
         }
-      }
-      
+      }      
       steps {        
         sh ' ./mvnw test'
       }
@@ -30,8 +28,7 @@ pipeline {
        not {
           branch 'master' 
         }
-      }
-      
+      }      
       steps {        
         sh ' ./mvnw package'
       }
@@ -39,31 +36,23 @@ pipeline {
     
     stage('Deploy') {
       when {
-       not {
+       {
           branch 'master' 
         }
-      }
-      
+      }      
       steps {        
         sh ' ./mvnw package'
       }
     }
     
  stage('Done!') {
-   environment { 
-                MyTestVar = """${sh(
-                               returnStdout: true,
-                               script: 'git rev-list --count HEAD'
-                            )}"""
-            }
-      when {
+     when {
        not { 
          branch 'master' 
        }       
-      }
-   
+      }   
       steps {
-        sh 'echo Hello Mr. $MyTestVar'
+        sh 'echo Sending notification to Slack'
         
       }
     }  
