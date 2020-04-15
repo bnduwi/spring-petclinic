@@ -2,55 +2,35 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      when {
-       not {
-          branch 'master' 
-        }
-      }      
+      when { not { branch 'master' } }      
       steps {
         sh ' ./mvnw clean'
       }
     }
     
     stage('Test') {
-      when {
-       not {
-          branch 'master' 
-        }
-      }      
-      steps {        
-        sh ' ./mvnw test'
+        when { not { branch 'master' } }      
+        steps {        
+          sh ' ./mvnw test'
       }
     }
     
     stage('Package') {
-      when {
-       not {
-          branch 'master' 
-        }
-      }      
+      when { not { branch 'master' } }     
       steps {        
         sh ' ./mvnw package'
       }
     }
     
     stage('Deploy') {
-      when {
-       {
-          branch 'master' 
-        }
-      }      
+      when {  branch 'master' }     
       steps {        
         sh ' ./mvnw package'
       }
     }
     
  stage('Done!') {
-     when {
-       not { 
-         branch 'master' 
-       }       
-      }   
+      when { not { branch 'master' } }   
       steps {
         sh 'echo Sending notification to Slack'
         
